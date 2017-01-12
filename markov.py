@@ -60,7 +60,7 @@ def make_text(chains):
 
         word = choice(chains[key])
 
-        if (len(" ".join(words)) + len(word)) > 140:
+        if (len(" ".join(words)) + len(word)) >= 140:
             break
 
         words.append(word)
@@ -90,8 +90,13 @@ text = open_and_read_file(filenames)
 chains = make_chains(text)
 
 # Your task is to write a new function tweet, that will take chains as input
-# tweet(chains)
-tweet(chains)
-# user = 'MarkovShake'
-# statuses = api.GetUserTimeline(user)
-# print([s.text for s in statuses])
+while True:
+    new_twitt = raw_input("Enter to tweet again [q to quit]")
+    if new_twitt.lower() == "q":
+        break
+
+    print 'Last twitt:'
+    statuses = api.GetUserTimeline(819336276750921728)
+    print(statuses[0].text)
+    print "New twitt: "
+    tweet(chains)
